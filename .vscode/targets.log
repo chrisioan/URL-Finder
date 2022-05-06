@@ -1,48 +1,27 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
- 
-# Make data base, printed on Fri May  6 14:07:31 2022
- 
+# Make data base, printed on Fri May  6 18:31:47 2022
 
 # Variables
- 
 
- 
 # environment
- 
 GDK_BACKEND = x11
- 
 # environment
- 
 LC_ALL = C
- 
 # environment
- 
 GNOME_SHELL_SESSION_MODE = ubuntu
- 
 # environment
- 
 SSH_AGENT_LAUNCHER = gnome-keyring
- 
 # environment
- 
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-deddf3ca-6070-4d9d-a4f4-b62795db5464.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9a605e95-8a93-4cf4-870a-fced06608460.sock
 # environment
 LC_NAME = el_GR.UTF-8
 # environment
@@ -82,23 +61,23 @@ VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/57fd6d0195bb9b
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.XG1JL1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.KV7PL1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.107
+GNOME_TERMINAL_SERVICE = :1.128
 # makefile
 MAKEFLAGS = pqrR
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=fd86b0ff34ca8840852c4c126274f613
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=b79457ecdc8d6a899f38b3ef62753ea9
 # makefile
 CURDIR := /home/chrisioan_/Desktop/Syspro/syspro_hw1
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
@@ -126,19 +105,19 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2919
+VSCODE_PID = 2621
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1225,unix/Chris-VM:/tmp/.ICE-unix/1225
+SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1115,unix/Chris-VM:/tmp/.ICE-unix/1115
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=fd86b0ff34ca8840852c4c126274f613
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=b79457ecdc8d6a899f38b3ef62753ea9
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -156,7 +135,7 @@ XMODIFIERS = @im=ibus
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/8cb927c0_a741_4310_af74_6431bdb30383
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/1c712327_47bc_4c29_acae_587fc144b851
 # environment
 MAKELEVEL := 0
 # default
@@ -212,9 +191,9 @@ LOGNAME = chrisioan_
 # environment
 SNAP_ARCH = amd64
 # makefile
-.DEFAULT_GOAL := compile
+.DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1225
+SYSTEMD_EXEC_PID = 1115
 # environment
 DISPLAY = :0
 # environment
@@ -290,7 +269,7 @@ LC_IDENTIFICATION = el_GR.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=129/1024=13%, Rehash=0, Collisions=13/159=8%
+# Load=129/1024=13%, Rehash=0, Collisions=13/162=8%
 
 # Pattern-specific Variable Values
 
@@ -310,21 +289,44 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 compile:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 2):
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := compile
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 4):
 	g++ -o sniffer sniffer.cpp
 
 # Not a target:
 Makefile:
- 
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-05-06 14:07:19.670603815
- 
+#  Last modified 2022-05-06 17:17:59.71221025
 #  File has been updated.
- 
 #  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 10):
+	rm -f *.o sniffer
 
 # Not a target:
 .DEFAULT:
@@ -332,27 +334,42 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-all:
+all: compile
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
+
+run:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 7):
+	./sniffer -p monitor
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=5/1024=0%, Rehash=0, Collisions=0/15=0%
+# Load=7/1024=1%, Rehash=0, Collisions=0/21=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 222 B / avg = 10 B
-# current buf: size = 8162 B / used = 222 B / count = 21 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 23 / storage = 227 B / avg = 9 B
+# current buf: size = 8162 B / used = 227 B / count = 23 / avg = 9 B
 
-# strcache performance: lookups = 26 / hit rate = 19%
+# strcache performance: lookups = 34 / hit rate = 32%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=0/26=0%
-# Finished Make data base on Fri May  6 14:07:31 2022
+# Load=23/8192=0%, Rehash=0, Collisions=0/34=0%
+# Finished Make data base on Fri May  6 18:31:47 2022
 
  

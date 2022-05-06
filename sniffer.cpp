@@ -8,11 +8,20 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    // Check if program is executed correctly
+    if ((argc != 1) && (argc != 3))
+    {
+        printf("Usage: ./sniffer [-p path]\n");
+        exit(1);
+    }
+    
     // Default path is current directory
     string path = ".";
 
@@ -26,13 +35,6 @@ int main(int argc, char *argv[])
         }
         // Update path
         path = argv[2];
-    }
-
-    // Check if program is executed correctly
-    if ((argc != 1) && (argc != 3))
-    {
-        printf("Usage: ./sniffer [-p path]\n");
-        exit(1);
     }
 
     int p[2];
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
         }
         // Use 'inotifywait' to monitor the changes in files
         // stored in a directory under 'path'
-        if ((execlp("inotifywait", "inotifywait", path.c_str(), "-m", "-e", "create", "-e", "moved_to", NULL)) == -1)
+        if (execlp("inotifywait", "inotifywait", path.c_str(), "-m", "-e", "create", "-e", "moved_to", NULL) == -1)
         {
             // execlp() failed
             perror("execlp call");

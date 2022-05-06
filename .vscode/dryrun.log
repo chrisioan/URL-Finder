@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
 g++ -o sniffer sniffer.cpp
 make: Leaving directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
