@@ -1,5 +1,9 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
-g++ -o sniffer sniffer.cpp
+ 
+rm -f sniffer workers sniffer.o workers.o named_pipes/* monitor/*
+ 
+./sniffer -p monitor/
+ 
 make: Leaving directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
  
