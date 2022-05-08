@@ -2,106 +2,56 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.3
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
- 
-# Make data base, printed on Sat May  7 21:32:07 2022
- 
+# Make data base, printed on Sun May  8 11:57:02 2022
 
 # Variables
- 
 
- 
 # environment
- 
 GDK_BACKEND = x11
- 
 # environment
- 
 LC_ALL = C
- 
 # environment
- 
 GNOME_SHELL_SESSION_MODE = ubuntu
- 
 # environment
- 
 SSH_AGENT_LAUNCHER = gnome-keyring
- 
 # environment
- 
 SNAP_INSTANCE_KEY = 
- 
 # environment
- 
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-5ac1a1cb-8554-4f99-a524-699941612684.sock
- 
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ec72ae03-c044-45e6-a467-22150108ea0b.sock
 # environment
- 
 LC_NAME = el_GR.UTF-8
- 
 # environment
- 
 LC_NUMERIC = el_GR.UTF-8
- 
 # environment
- 
 VSCODE_CWD = /home/chrisioan_/Desktop/Syspro/syspro_hw1
- 
 # environment
- 
 LC_ADDRESS = el_GR.UTF-8
- 
 # default
- 
 MAKE_COMMAND := make
- 
 # environment
- 
 QT_ACCESSIBILITY = 1
- 
 # automatic
- 
 @D = $(patsubst %/,%,$(dir $@))
- 
 # environment
- 
 SNAP_INSTANCE_NAME = code
- 
 # environment
- 
 GDK_PIXBUF_MODULEDIR = /snap/code/95/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
- 
 # environment
- 
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
- 
 # default
- 
 .VARIABLES := 
- 
 # environment
- 
 PWD = /home/chrisioan_/Desktop/Syspro/syspro_hw1
- 
 # automatic
- 
 %D = $(patsubst %/,%,$(dir $%))
- 
 # environment
- 
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
- 
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -113,17 +63,17 @@ VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/57fd6d0195bb9b
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VHJZL1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.T2V5L1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.93
+GNOME_TERMINAL_SERVICE = :1.101
 # makefile
 MAKEFLAGS = pqrR
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=6f0534fd1a33c6c3e9a1a6ec62759841
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=2d27618335d4d88899e2ee9262778561
 # makefile
 CURDIR := /home/chrisioan_/Desktop/Syspro/syspro_hw1
 # environment
@@ -157,19 +107,19 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2343
+VSCODE_PID = 2808
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1223,unix/Chris-VM:/tmp/.ICE-unix/1223
+SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1226,unix/Chris-VM:/tmp/.ICE-unix/1226
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=6f0534fd1a33c6c3e9a1a6ec62759841
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=2d27618335d4d88899e2ee9262778561
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -189,7 +139,7 @@ objects = sniffer.o workers.o named_pipes/* out/* monitor/*
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/bffce962_c8c6_40f7_ba15_faf82efd6b40
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/41a5c573_1e39_4e10_a37d_b4018bf33fb7
 # environment
 MAKELEVEL := 0
 # default
@@ -247,7 +197,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := ALL
 # environment
-SYSTEMD_EXEC_PID = 1223
+SYSTEMD_EXEC_PID = 1226
 # environment
 DISPLAY = :0
 # environment
@@ -328,12 +278,13 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
+ 
 
 # Directories
 
-# . (device 2051, inode 659866): 18 files, no impossibilities.
+# . (device 2051, inode 659866): 14 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -379,7 +330,6 @@ ALL: clean sniffer workers run
 all:
 #  Command line target.
 #  Implicit rule search has been done.
- 
 #  File does not exist.
 #  File has not been updated.
 
@@ -411,12 +361,12 @@ workers:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 258 B / avg = 9 B
-# current buf: size = 8162 B / used = 258 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 238 B / avg = 9 B
+# current buf: size = 8162 B / used = 238 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 44 / hit rate = 38%
+# strcache performance: lookups = 40 / hit rate = 37%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Sat May  7 21:32:07 2022
+# Load=25/8192=0%, Rehash=0, Collisions=0/40=0%
+# Finished Make data base on Sun May  8 11:57:02 2022
 
  
