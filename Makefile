@@ -1,5 +1,5 @@
 .PHONY: clean
-objects = sniffer.o workers.o named_pipes/* monitor/*
+objects = sniffer.o workers.o named_pipes/* out/* monitor/*
 
 ALL: clean sniffer workers run
 

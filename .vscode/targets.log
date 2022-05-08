@@ -15,7 +15,7 @@ make: *** No rule to make target 'all'.  Stop.
  
 
  
-# Make data base, printed on Sat May  7 16:40:34 2022
+# Make data base, printed on Sat May  7 21:32:07 2022
  
 
 # Variables
@@ -103,9 +103,7 @@ PWD = /home/chrisioan_/Desktop/Syspro/syspro_hw1
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
  
 # automatic
- 
 ^D = $(patsubst %/,%,$(dir $^))
- 
 # environment
 VSCODE_LOG_STACK = false
 # automatic
@@ -187,7 +185,7 @@ MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
 # makefile (from 'Makefile', line 2)
-objects = sniffer.o workers.o named_pipes/* monitor/*
+objects = sniffer.o workers.o named_pipes/* out/* monitor/*
 # environment
 SHLVL = 1
 # environment
@@ -346,7 +344,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-07 16:40:32.796053551
+#  Last modified 2022-05-07 21:31:33.395629335
 #  File has been updated.
 #  Successfully updated.
 
@@ -381,9 +379,9 @@ ALL: clean sniffer workers run
 all:
 #  Command line target.
 #  Implicit rule search has been done.
+ 
 #  File does not exist.
 #  File has not been updated.
- 
 
 run:
 #  Implicit rule search has not been done.
@@ -419,6 +417,6 @@ workers:
 # strcache performance: lookups = 44 / hit rate = 38%
 # hash-table stats:
 # Load=27/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Sat May  7 16:40:34 2022
+# Finished Make data base on Sat May  7 21:32:07 2022
 
  

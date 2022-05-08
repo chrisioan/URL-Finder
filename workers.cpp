@@ -19,10 +19,12 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    int rsize = 0, fd;
-    char read_buf[1000];
+    // Initialize monitored dir's path
+    const string path = argv[0];
     // Initialize Named Pipe name
     const string np_name = NP_DIR + to_string(getpid());
+    int rsize = 0, fd;
+    char read_buf[1000];
 
     // Open the Named Pipe for read & write
     if ((fd = open(np_name.c_str(), O_RDWR)) < 0)

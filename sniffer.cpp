@@ -15,13 +15,27 @@
 
 #define NP_DIR "named_pipes/" // NP = NamedPipes
 
-int flag = 0;
+// volatile sig_atomic_t sigint_flag = 0;
+// int sigint_flag = 0;
+//  int flag = 0;
 
-void catchinterrupt(int signum)
+void sigchld_handler(int signum)
 {
-    //printf("\nCatching: signum=%d\n", signum);
-    //printf("Catching: returning\n");
-    flag = 1;
+    // printf("\nCatching: signum=%d\n", signum);
+    // printf("Catching: returning\n");
+    // flag = 1;
+}
+
+void sigint_handler(int signum)
+{
+    // leaks
+    /* if (kill(pid, SIGKILL) == -1)
+    {
+        // kill() failed
+        perror("kill call");
+        exit(10);
+    } */
+    // sigint_flag = 1;
 }
 
 using namespace std;
@@ -100,17 +114,23 @@ int main(int argc, char *argv[])
     int rsize = 0, wsize = 0, fd;
     char read_buf[1000], write_buf[1000];
 
-    static struct sigaction act;
-    act.sa_handler = catchinterrupt;
+    static struct sigaction act, act2;
+    act.sa_handler = sigchld_handler;
+    // read() shall restart instead of fail if
+    // signal (SIGCHLD) is given to manager by worker
     act.sa_flags = SA_RESTART;
     sigfillset(&(act.sa_mask));
     sigaction(SIGCHLD, &act, NULL);
+
+    act2.sa_handler = sigint_handler;
+    sigfillset(&(act2.sa_mask));
+    sigaction(SIGINT, &act2, NULL);
 
     while (1)
     {
         // Clear read_buf
         memset(read_buf, 0, 1000);
-        //sleep(5);
+        // sleep(5);
         if ((rsize = read(p[0], read_buf, 1000)) < 0)
         {
             perror("Error in Reading");
@@ -121,11 +141,12 @@ int main(int argc, char *argv[])
         filename = strtok(NULL, " ");
         filename = strtok(NULL, " ");
 
-        while ((pid=waitpid(-1, NULL, WNOHANG | WUNTRACED)) > 0)
+        // Catch all workers in status "stopped"
+        while ((pid = waitpid(-1, NULL, WNOHANG | WUNTRACED)) > 0)
         {
             // add worker to queue
             workers_queue.push(pid);
-            flag = 0;
+            // flag=0;
         }
 
         // There is an available worker
@@ -205,7 +226,7 @@ int main(int argc, char *argv[])
                     exit(7);
                 }
                 // execlp() failed
-                if (execlp("./workers", "./workers", NULL) == -1)
+                if (execlp("./workers", path.c_str(), NULL) == -1)
                 {
                     // execlp() failed
                     perror("execlp call");
