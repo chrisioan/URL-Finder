@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 
     while (1)
     {
+    	mybuffer.clear();			/* Clear buffer */
         while ((rsize = read(fd_np, &input, 1)) > 0)
         {
             if (input == '\n')
