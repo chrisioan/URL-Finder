@@ -1,7 +1,7 @@
 .PHONY: clean
-objects = sniffer.o workers.o named_pipes/* out/* monitor/*
+objects = sniffer.o workers.o named_pipes/* out/*
 
-ALL: clean sniffer workers run
+ALL: clean sniffer workers
 
 sniffer:
 	g++ -g -Wall -c sniffer.cpp
