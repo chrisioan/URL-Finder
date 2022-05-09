@@ -16,25 +16,20 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "named_pipes/" // NamedPipes' directory
-#define OUT_DIR "out/"        // output files' directory
-#define OUT_EXT ".out"        // output files' extension
+#define NP_DIR "named_pipes/"                   /* NamedPipes' directory */
+#define OUT_DIR "out/"                          /* output files' directory */
+#define OUT_EXT ".out"                          /* output files' extension */
 
-// File Descriptors
-int fd_np, fd_read, fd_write;
+int fd_np, fd_read, fd_write;                   /* File Descriptors */
 
 void cleanup(int signum)
 {
-    // Close Named Pipe
-    close(fd_np);
-    // Close Read File
+    close(fd_np);                               /* Close Named Pipe */
     if (fd_read > 0)
-        close(fd_read);
-    // Close Write File
+        close(fd_read);                         /* Close Read File */
     if (fd_write > 0)
-        close(fd_write);
-    // Terminate this Worker
-    raise(SIGKILL);
+        close(fd_write);                        /* Close Write File */
+    raise(SIGKILL);                             /* Terminate this Worker */
 }
 
 using namespace std;
@@ -42,27 +37,21 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     static struct sigaction act;
-
     act.sa_handler = cleanup;
     sigfillset(&(act.sa_mask));
     sigaction(SIGINT, &act, NULL);
 
-    // Map to contain pair<Location, Count>
-    map<string, int> locations;
-    // Initialize monitored dir's path
-    const string path = argv[0];
-    // Initialize Named Pipe name
-    const string np_name = NP_DIR + to_string(getpid());
+    map<string, int> locations;                 /* Map to contain pair<Location, Count> */
+    const string path = argv[0];                /* Initialize monitored dir's path */
+    const string np_name = NP_DIR + to_string(getpid());    /* Initialize Named Pipe name */
     int rsize = 0;
-    // To read byte-byte
-    char input;
+    char input;                                 /* To read byte-byte */
     vector<char> mybuffer, url;
 
-    // Open the Named Pipe for read & write
+    /* Open the Named Pipe for read & write */
     if ((fd_np = open(np_name.c_str(), O_RDWR)) < 0)
     {
-        // open() failed
-        perror("fifo open error");
+        perror("fifo open error");              /* open() failed */
         exit(6);
     }
 
@@ -70,14 +59,16 @@ int main(int argc, char *argv[])
     {
         while ((rsize = read(fd_np, &input, 1)) > 0)
         {
-            if (input == '\0')
+            if (input == '\n')
+            {
+                mybuffer.push_back(input);
                 break;
+            }
             mybuffer.push_back(input);
         }
         if (rsize < 0)
         {
-            // read() failed
-            perror("Error in Reading");
+            perror("Error in Reading");         /* read() failed */
             exit(6);
         }
 
@@ -93,56 +84,44 @@ int main(int argc, char *argv[])
             else
                 write_file += OUT_EXT;
         }
-        // Open read file
+        /* Open read file */
         if ((fd_read = open(read_file.c_str(), O_RDONLY, 0666)) == -1)
         {
-            // open() failed
-            perror("open call");
+            perror("open call");                /* open() failed */
             exit(6);
         }
-        // Create output file
+        /* Create output file */
         if ((fd_write = open(write_file.c_str(), O_WRONLY | O_CREAT, 0666)) == -1)
-        {
-            // open() failed
+        {                                       /* open() failed */
             if (errno != EEXIST)
             {
-                // errno not equal to file exists
-                perror("open call");
+                perror("open call");            /* errno not equal to file exists */
                 exit(6);
             }
         }
-        // Clear Buffer (Vector)
-        mybuffer.clear();
-        // rsize = 1 (byte-byte)
-        while ((rsize = read(fd_read, &input, 1)) > 0)
+        mybuffer.clear();                       /* Clear Buffer */
+        while ((rsize = read(fd_read, &input, 1)) > 0)  /* rsize = 1 (byte-byte) */
         {
-            // Found newline
-            if (input == '\n')
+            if (input == '\n')                  /* Found newline */
             {
                 for (int i = 0; i < int(mybuffer.size()); i++)
                 {
-                    // Enough room for URL
-                    if ((mybuffer.size() - i) > 7)
-                    {
-                        // Starts with http://
+                    if ((mybuffer.size() - i) > 7)  /* Enough space for URL */
+                    {                           /* Starts with http:// */
                         if (mybuffer.at(i) == 'h' && mybuffer.at(i + 1) == 't' && mybuffer.at(i + 2) == 't' && mybuffer.at(i + 3) == 'p' && mybuffer.at(i + 4) == ':' && mybuffer.at(i + 5) == '/' && mybuffer.at(i + 6) == '/')
-                        {
-                            // Iterate to extract the URL's Location
+                        {                       /* Iterate to extract the URL's Location */
                             for (int w = i + 7; w < int(mybuffer.size()); w++)
-                            {
-                                // Found the end of URL's Location
+                            {                   /* Found the end of URL's Location */ 
                                 if (mybuffer.at(w) == '/' || mybuffer.at(w) == '\0' || mybuffer.at(w) == '\n' || mybuffer.at(w) == ' ')
                                 {
                                     string loc = "";
-                                    // Iterate URL's Location to find 'www.' (if exists)
+                                    /* Iterate URL's Location to find 'www.' (if exists) */
                                     for (int j = 0; j < int(url.size()); j++)
-                                    {
-                                        // Enough room for URL
+                                    {           /* Enough space for URL */
                                         if ((url.size() - j) > 4)
-                                        {
-                                            // Starts with www.
+                                        {       /* Starts with www. */
                                             if (url.at(j) == 'w' && url.at(j + 1) == 'w' && url.at(j + 2) == 'w' && url.at(j + 3) == '.')
-                                                // Remove www. from URL's Location
+                                                /* Remove www. from URL's Location */
                                                 url.erase(url.begin() + j, url.begin() + j + 3);
                                             else
                                                 loc += url.at(j);
@@ -150,81 +129,58 @@ int main(int argc, char *argv[])
                                         else
                                             loc += url.at(j);
                                     }
-                                    // Check if URL's Location exists in map
-                                    auto it = locations.find(loc);
-                                    // Exists in map
-                                    if (it != locations.end())
-                                        // Increase Counter
-                                        it->second += 1;
-                                    // Doesn't exist in map
-                                    else
-                                        // Insert and set Counter to 1
-                                        locations.insert(pair<string, int>(loc, 1));
-                                    // Empty the URL buffer
-                                    url.clear();
+                                    auto it = locations.find(loc);  /* Check if URL's Location exists in map */
+                                    if (it != locations.end())  /* Exists in map */
+                                        it->second += 1;    /* Increase Counter */
+                                    else        /* Doesn't exist in map */
+                                        locations.insert(pair<string, int>(loc, 1));    /* Insert and set Counter to 1 */
+                                    url.clear();    /* Empty the URL buffer */
                                     break;
                                 }
-                                // Didn't find end yet - insert char
-                                else
+                                else            /* Didn't find end yet - insert char */
                                     url.push_back(mybuffer.at(w));
                             }
                             continue;
                         }
-                        // Doesn't start with http://
-                        else
+                        else                    /* Doesn't start with http:// */
                             continue;
                     }
-                    // Not enough room for URL
-                    else
+                    else                        /* Not enough space for URL */
                         break;
                 }
-                // Empty the buffer
-                mybuffer.clear();
+                mybuffer.clear();               /* Clear buffer */
             }
-            // Still on the same line
-            else
-            {
-                // Add byte/char to buffer
-                mybuffer.push_back(input);
-            }
+            else                                /* Still on the same line */
+                mybuffer.push_back(input);      /* Add byte/char to buffer */
         }
         if (rsize < 0)
         {
-            // read() failed
-            perror("Error in Reading");
+            perror("Error in Reading");         /* read() failed */
             exit(6);
         }
-        // Write everything to .out file
+        /* Write everything to .out file */
         for (auto curr = locations.begin(); curr != locations.end(); curr++)
         {
             string out = (*curr).first + " " + to_string((*curr).second) + "\n";
-            // write
             if (write(fd_write, out.c_str(), out.length()) == -1)
             {
-                // write() failed
-                perror("Error in Writing");
+                perror("Error in Writing");     /* write() failed */
                 exit(7);
             }
         }
-        // Empty the map
-        locations.clear();
-        // Close Read File
-        if ((fd_read = close(fd_read)) == -1)
+        locations.clear();                      /* Clear the map */
+        if ((fd_read = close(fd_read)) == -1)   /* Close Read File */
         {
-            // close() failed
-            perror("Error in Close");
+            perror("Error in Close");           /* close() failed */
             exit(11);
         }
-        // Close Write File
-        if ((fd_write = close(fd_write)) == -1)
+        if ((fd_write = close(fd_write)) == -1) /* Close Write File */
         {
-            // close() failed
-            perror("Error in Close");
+            perror("Error in Close");           /* close() failed */
             exit(11);
         }
         fflush(stdout);
-        // Worker is now in state "stopped"
-        raise(SIGSTOP);
+        raise(SIGSTOP);                         /* Worker is now in state "stopped" */
     }
 
     return 0;
