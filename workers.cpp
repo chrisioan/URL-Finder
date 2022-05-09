@@ -17,8 +17,8 @@
 #include <sys/stat.h>
 
 #define NP_DIR "named_pipes/" // NamedPipes' directory
-#define OUT_DIR "out/"  // output files' directory
-#define OUT_EXT ".out"  // output files' extension
+#define OUT_DIR "out/"        // output files' directory
+#define OUT_EXT ".out"        // output files' extension
 
 using namespace std;
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     {
         while ((rsize = read(fd_np, &input, 1)) > 0)
         {
-            if(input == '\0')
+            if (input == '\0')
                 break;
             mybuffer.push_back(input);
         }
