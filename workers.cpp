@@ -33,8 +33,7 @@ int main(int argc, char *argv[])
     int rsize = 0, fd_np, fd_read, fd_write;
     // To read byte-byte
     char input;
-    vector<char> mybuffer;
-    vector<char> url;
+    vector<char> mybuffer, url;
 
     // Open the Named Pipe for read & write
     if ((fd_np = open(np_name.c_str(), O_RDWR)) < 0)
