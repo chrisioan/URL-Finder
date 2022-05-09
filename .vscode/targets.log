@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May  8 11:57:02 2022
+# Make data base, printed on Mon May  9 20:56:01 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ec72ae03-c044-45e6-a467-22150108ea0b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d73ee081-f5b4-422e-9ebe-c0c2bd64584f.sock
 # environment
 LC_NAME = el_GR.UTF-8
 # environment
@@ -63,17 +63,17 @@ VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/57fd6d0195bb9b
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.T2V5L1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.HOTML1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.101
+GNOME_TERMINAL_SERVICE = :1.103
 # makefile
 MAKEFLAGS = pqrR
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=2d27618335d4d88899e2ee9262778561
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=51b6d37a81880e4bce126db362793987
 # makefile
 CURDIR := /home/chrisioan_/Desktop/Syspro/syspro_hw1
 # environment
@@ -107,19 +107,19 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2808
+VSCODE_PID = 5440
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1226,unix/Chris-VM:/tmp/.ICE-unix/1226
+SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/4422,unix/Chris-VM:/tmp/.ICE-unix/4422
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=2d27618335d4d88899e2ee9262778561
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=51b6d37a81880e4bce126db362793987
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -139,7 +139,7 @@ objects = sniffer.o workers.o named_pipes/* out/* monitor/*
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/41a5c573_1e39_4e10_a37d_b4018bf33fb7
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/b25b75f9_ffe4_4fbd_a02b_f5f98e5b6392
 # environment
 MAKELEVEL := 0
 # default
@@ -197,7 +197,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := ALL
 # environment
-SYSTEMD_EXEC_PID = 1226
+SYSTEMD_EXEC_PID = 4422
 # environment
 DISPLAY = :0
 # environment
@@ -278,13 +278,12 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
- 
 
 # Directories
 
-# . (device 2051, inode 659866): 14 files, no impossibilities.
+# . (device 2051, inode 659866): 18 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -295,17 +294,18 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-07 21:31:33.395629335
+#  Last modified 2022-05-09 20:55:40.826815553
 #  File has been updated.
 #  Successfully updated.
 
 sniffer:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 7):
 	g++ -g -Wall -c sniffer.cpp
-	g++ sniffer.o -o sniffer -lpthread -fsanitize=address -g3
+	g++ sniffer.o -o sniffer -fsanitize=address -g3
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -346,7 +346,7 @@ workers:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
 	g++ -g -Wall -c workers.cpp
-	g++ workers.o -o workers -lpthread -fsanitize=address -g3
+	g++ workers.o -o workers -fsanitize=address -g3
 
 .PHONY: clean
 #  Implicit rule search has not been done.
@@ -361,12 +361,12 @@ workers:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 238 B / avg = 9 B
-# current buf: size = 8162 B / used = 238 B / count = 25 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 258 B / avg = 9 B
+# current buf: size = 8162 B / used = 258 B / count = 27 / avg = 9 B
 
-# strcache performance: lookups = 40 / hit rate = 37%
+# strcache performance: lookups = 44 / hit rate = 38%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=0/40=0%
-# Finished Make data base on Sun May  8 11:57:02 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/44=0%
+# Finished Make data base on Mon May  9 20:56:01 2022
 
  

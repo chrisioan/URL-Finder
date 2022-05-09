@@ -20,17 +20,40 @@
 #define OUT_DIR "out/"        // output files' directory
 #define OUT_EXT ".out"        // output files' extension
 
+// File Descriptors
+int fd_np, fd_read, fd_write;
+
+void cleanup(int signum)
+{
+    // Close Named Pipe
+    close(fd_np);
+    // Close Read File
+    if (fd_read > 0)
+        close(fd_read);
+    // Close Write File
+    if (fd_write > 0)
+        close(fd_write);
+    // Terminate this Worker
+    raise(SIGKILL);
+}
+
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    static struct sigaction act;
+
+    act.sa_handler = cleanup;
+    sigfillset(&(act.sa_mask));
+    sigaction(SIGINT, &act, NULL);
+
     // Map to contain pair<Location, Count>
     map<string, int> locations;
     // Initialize monitored dir's path
     const string path = argv[0];
     // Initialize Named Pipe name
     const string np_name = NP_DIR + to_string(getpid());
-    int rsize = 0, fd_np, fd_read, fd_write;
+    int rsize = 0;
     // To read byte-byte
     char input;
     vector<char> mybuffer, url;
@@ -108,7 +131,7 @@ int main(int argc, char *argv[])
                             for (int w = i + 7; w < int(mybuffer.size()); w++)
                             {
                                 // Found the end of URL's Location
-                                if (mybuffer.at(w) == '/' || mybuffer.at(w) == '\0' || mybuffer.at(w) == '\n')
+                                if (mybuffer.at(w) == '/' || mybuffer.at(w) == '\0' || mybuffer.at(w) == '\n' || mybuffer.at(w) == ' ')
                                 {
                                     string loc = "";
                                     // Iterate URL's Location to find 'www.' (if exists)
@@ -185,6 +208,20 @@ int main(int argc, char *argv[])
         }
         // Empty the map
         locations.clear();
+        // Close Read File
+        if ((fd_read = close(fd_read)) == -1)
+        {
+            // close() failed
+            perror("Error in Close");
+            exit(11);
+        }
+        // Close Write File
+        if ((fd_write = close(fd_write)) == -1)
+        {
+            // close() failed
+            perror("Error in Close");
+            exit(11);
+        }
         fflush(stdout);
         // Worker is now in state "stopped"
         raise(SIGSTOP);

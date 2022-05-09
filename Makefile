@@ -5,11 +5,11 @@ ALL: clean sniffer workers run
 
 sniffer:
 	g++ -g -Wall -c sniffer.cpp
-	g++ sniffer.o -o sniffer -lpthread -fsanitize=address -g3
+	g++ sniffer.o -o sniffer -fsanitize=address -g3
 
 workers:
 	g++ -g -Wall -c workers.cpp
-	g++ workers.o -o workers -lpthread -fsanitize=address -g3
+	g++ workers.o -o workers -fsanitize=address -g3
 
 run:
 	./sniffer -p monitor/

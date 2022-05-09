@@ -15,33 +15,51 @@
 
 #define NP_DIR "named_pipes/" // NamedPipes' directory
 
-// volatile sig_atomic_t sigint_flag = 0;
-// int sigint_flag = 0;
-//  int flag = 0;
+// Listener's PID
+pid_t pid_l;
+// Pipe
+int p[2];
 
-void sigchld_handler(int signum)
+void cleanup(int signum)
 {
-    // printf("\nCatching: signum=%d\n", signum);
-    // printf("Catching: returning\n");
-    // flag = 1;
-}
-
-void sigint_handler(int signum)
-{
-    // leaks
-    /* if (kill(pid, SIGKILL) == -1)
+    // SIGINT signal
+    if (signum == SIGINT)
     {
-        // kill() failed
-        perror("kill call");
-        exit(10);
-    } */
-    // sigint_flag = 1;
+        // Close the pipe
+        if (p[0] > 1)
+            close(p[0]);
+        if (p[1] > 1)
+            close(p[1]);
+
+        // Send SIGKILL to Listener - Terminate it
+        kill(pid_l, SIGKILL);
+
+        // Send SIGCONT signal to every process in the process group of
+        // Manager/Sniffer so that "stopped" processes can get the signal SIGINT
+        kill(0, SIGCONT);
+
+        // Send SIGINT signal so that every process can catch it and
+        // make their own cleanup
+        kill(0, SIGINT);
+
+        // Terminate Manager/Sniffer
+        raise(SIGKILL);
+    }
 }
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    static struct sigaction act;
+    // read() shall restart instead of fail if
+    // signal (SIGCHLD) is given to manager by worker
+    act.sa_handler = cleanup;
+    act.sa_flags = SA_RESTART;
+    sigfillset(&(act.sa_mask));
+    sigaction(SIGCHLD, &act, NULL);
+    sigaction(SIGINT, &act, NULL);
+
     // Check if program is executed correctly
     if ((argc != 1) && (argc != 3))
     {
@@ -62,10 +80,10 @@ int main(int argc, char *argv[])
         }
         // Update path
         path = argv[2];
+        // '/' must be the last char
+        if (path.back() != '/')
+            path += "/";
     }
-
-    int p[2];
-    pid_t pid_l;
 
     // Create a pipe so that Sniffer / Manager
     // can communicate with Listener
@@ -114,40 +132,23 @@ int main(int argc, char *argv[])
     int rsize = 0, wsize = 0, fd;
     char read_buf[1000], write_buf[1000];
 
-    static struct sigaction act, act2;
-    act.sa_handler = sigchld_handler;
-    // read() shall restart instead of fail if
-    // signal (SIGCHLD) is given to manager by worker
-    act.sa_flags = SA_RESTART;
-    sigfillset(&(act.sa_mask));
-    sigaction(SIGCHLD, &act, NULL);
-
-    act2.sa_handler = sigint_handler;
-    sigfillset(&(act2.sa_mask));
-    sigaction(SIGINT, &act2, NULL);
-
     while (1)
     {
         // Clear read_buf
         memset(read_buf, 0, 1000);
-        // sleep(5);
         if ((rsize = read(p[0], read_buf, 1000)) < 0)
         {
             perror("Error in Reading");
             exit(6);
         }
-        // strtok_r instead?
         char *filename = strtok(read_buf, " ");
         filename = strtok(NULL, " ");
         filename = strtok(NULL, " ");
 
         // Catch all workers in status "stopped"
         while ((pid = waitpid(-1, NULL, WNOHANG | WUNTRACED)) > 0)
-        {
             // add worker to queue
             workers_queue.push(pid);
-            // flag=0;
-        }
 
         // There is an available worker
         if (!workers_queue.empty())
@@ -238,7 +239,6 @@ int main(int argc, char *argv[])
             }
         }
     }
-    waitpid(pid_l, NULL, 0);
 
     return 0;
 }
