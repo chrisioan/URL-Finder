@@ -16,23 +16,23 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "named_pipes/" // NP = NamedPipes
+#define NP_DIR "named_pipes/" // NamedPipes' directory
+#define OUT_DIR "out/"  // output files' directory
+#define OUT_EXT ".out"  // output files' extension
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    // Map to contain URL Locations with Number of times shown
+    // Map to contain pair<Location, Count>
     map<string, int> locations;
     // Initialize monitored dir's path
     const string path = argv[0];
     // Initialize Named Pipe name
     const string np_name = NP_DIR + to_string(getpid());
-    int rsize = 0, rsize2 = 0, fd_np, fd_read, fd_write;
-    char read_buf[1000], read_buf2[1000];
+    int rsize = 0, fd_np, fd_read, fd_write;
     // To read byte-byte
     char input;
-    // Keeps 1 line each time
     vector<char> mybuffer;
     vector<char> url;
 
@@ -46,27 +46,30 @@ int main(int argc, char *argv[])
 
     while (1)
     {
-        // Clear read_buf
-        memset(read_buf, 0, 1000);
-        if ((rsize = read(fd_np, read_buf, 1000)) < 0)
+        while ((rsize = read(fd_np, &input, 1)) > 0)
+        {
+            if(input == '\0')
+                break;
+            mybuffer.push_back(input);
+        }
+        if (rsize < 0)
         {
             // read() failed
             perror("Error in Reading");
             exit(6);
         }
-        // Clear Map
-        locations.clear();
+
         string read_file = path;
-        string write_file = "out/";
-        for (int i = 0; i < rsize; i++)
+        string write_file = OUT_DIR;
+        for (int i = 0; i < int(mybuffer.size()); i++)
         {
-            if (read_buf[i] != '\n')
+            if (mybuffer.at(i) != '\n')
             {
-                read_file += read_buf[i];
-                write_file += read_buf[i];
+                read_file += mybuffer.at(i);
+                write_file += mybuffer.at(i);
             }
             else
-                write_file += ".out";
+                write_file += OUT_EXT;
         }
         // Open read file
         if ((fd_read = open(read_file.c_str(), O_RDONLY, 0666)) == -1)
@@ -86,12 +89,10 @@ int main(int argc, char *argv[])
                 exit(6);
             }
         }
-        // Clear read_buf
-        memset(read_buf2, 0, 1000);
-        // Clear Vector
+        // Clear Buffer (Vector)
         mybuffer.clear();
-        // rsize2 = 1 (byte-byte)
-        while ((rsize2 = read(fd_read, &input, 1)) > 0)
+        // rsize = 1 (byte-byte)
+        while ((rsize = read(fd_read, &input, 1)) > 0)
         {
             // Found newline
             if (input == '\n')
@@ -130,7 +131,7 @@ int main(int argc, char *argv[])
                                     // Check if URL's Location exists in map
                                     auto it = locations.find(loc);
                                     // Exists in map
-                                    if(it != locations.end())
+                                    if (it != locations.end())
                                         // Increase Counter
                                         it->second += 1;
                                     // Doesn't exist in map
@@ -165,30 +166,28 @@ int main(int argc, char *argv[])
                 mybuffer.push_back(input);
             }
         }
-        if (rsize2 < 0)
+        if (rsize < 0)
         {
             // read() failed
             perror("Error in Reading");
             exit(6);
         }
-
-        for(auto it = locations.begin(); it != locations.end(); ++it)
-        {
-            string out = "";
-            out = (*it).first;
-            out += " ";
-            out += (*it).second;
-            out += "\n";
-            // write
-            
-            printf("%s", out.c_str());
-        }
-
         // Write everything to .out file
-        // fd_write
+        for (auto curr = locations.begin(); curr != locations.end(); curr++)
+        {
+            string out = (*curr).first + " " + to_string((*curr).second) + "\n";
+            // write
+            if (write(fd_write, out.c_str(), out.length()) == -1)
+            {
+                // write() failed
+                perror("Error in Writing");
+                exit(7);
+            }
+        }
         // Empty the map
         locations.clear();
         fflush(stdout);
+        // Worker is now in state "stopped"
         raise(SIGSTOP);
     }
 

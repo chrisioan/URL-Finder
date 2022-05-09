@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "named_pipes/" // NP = NamedPipes
+#define NP_DIR "named_pipes/" // NamedPipes' directory
 
 // volatile sig_atomic_t sigint_flag = 0;
 // int sigint_flag = 0;
