@@ -1,18 +1,25 @@
+# In order to execute this "Makefile" just type "make" or "make ALL"
 .PHONY: clean
-objects = sniffer.o workers.o named_pipes/* out/*
+OBJS	= sniffer.o workers.o
+OUT	= sniffer workers
+DIRS	= named_pipes/* out/*
+CPP	= g++
+FLAGS	= -g -Wall -c
 
-ALL: clean sniffer workers
+ALL: clean sniffer.o workers.o sniffer workers
+
+sniffer.o: sniffer.cpp
+	$(CPP) $(FLAGS) sniffer.cpp
+	
+workers.o: workers.cpp
+	$(CPP) $(FLAGS) workers.cpp
 
 sniffer:
-	g++ -g -Wall -c sniffer.cpp
-	g++ sniffer.o -o sniffer -fsanitize=address -g3
+	$(CPP) -g sniffer.o -o sniffer -fsanitize=address -g3
 
 workers:
-	g++ -g -Wall -c workers.cpp
-	g++ workers.o -o workers -fsanitize=address -g3
+	$(CPP) -g workers.o -o workers -fsanitize=address -g3
 
-run:
-	./sniffer -p monitor/
-
+# Clean things
 clean:
-	rm -f sniffer workers $(objects)
+	rm -f $(OBJS) $(OUT) $(DIRS)

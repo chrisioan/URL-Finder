@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May  9 20:56:01 2022
+# Make data base, printed on Tue May 10 20:19:22 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d73ee081-f5b4-422e-9ebe-c0c2bd64584f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-152186b4-b0ef-457c-9fc2-634f19e53868.sock
 # environment
 LC_NAME = el_GR.UTF-8
 # environment
@@ -63,17 +63,17 @@ VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/57fd6d0195bb9b
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.HOTML1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.MBP0L1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.103
+GNOME_TERMINAL_SERVICE = :1.96
 # makefile
 MAKEFLAGS = pqrR
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=51b6d37a81880e4bce126db362793987
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=1f926ad9622a81bd21b0b159627a92cc
 # makefile
 CURDIR := /home/chrisioan_/Desktop/Syspro/syspro_hw1
 # environment
@@ -107,19 +107,19 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 5440
+VSCODE_PID = 4260
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/4422,unix/Chris-VM:/tmp/.ICE-unix/4422
+SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1228,unix/Chris-VM:/tmp/.ICE-unix/1228
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=51b6d37a81880e4bce126db362793987
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=1f926ad9622a81bd21b0b159627a92cc
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -135,11 +135,11 @@ MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
 # makefile (from 'Makefile', line 2)
-objects = sniffer.o workers.o named_pipes/* out/* monitor/*
+objects = sniffer.o workers.o named_pipes/* out/*
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/b25b75f9_ffe4_4fbd_a02b_f5f98e5b6392
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/49948476_af00_4916_a763_498ce6385c1c
 # environment
 MAKELEVEL := 0
 # default
@@ -197,7 +197,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := ALL
 # environment
-SYSTEMD_EXEC_PID = 4422
+SYSTEMD_EXEC_PID = 1228
 # environment
 DISPLAY = :0
 # environment
@@ -278,12 +278,13 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
+ 
 
 # Directories
 
-# . (device 2051, inode 659866): 18 files, no impossibilities.
+# . (device 2051, inode 659866): 16 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -294,12 +295,11 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-09 20:55:40.826815553
+#  Last modified 2022-05-10 01:09:02.603983331
 #  File has been updated.
 #  Successfully updated.
 
 sniffer:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -315,7 +315,7 @@ clean:
 #  recipe to execute (from 'Makefile', line 18):
 	rm -f sniffer workers $(objects)
 
-ALL: clean sniffer workers run
+ALL: clean sniffer workers
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -354,19 +354,19 @@ workers:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=0/29=0%
+# Load=10/1024=1%, Rehash=0, Collisions=0/27=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 258 B / avg = 9 B
-# current buf: size = 8162 B / used = 258 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 254 B / avg = 9 B
+# current buf: size = 8162 B / used = 254 B / count = 27 / avg = 9 B
 
-# strcache performance: lookups = 44 / hit rate = 38%
+# strcache performance: lookups = 41 / hit rate = 34%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Mon May  9 20:56:01 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/41=0%
+# Finished Make data base on Tue May 10 20:19:22 2022
 
  

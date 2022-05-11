@@ -73,7 +73,12 @@ int main(int argc, char *argv[])
             exit(6);
         }
 
-        string read_file = path;
+        string read_file;
+        if(strcmp(path.c_str(), "./") == 0)
+            read_file = "";
+        else
+            read_file = path + "";
+        fflush(stdout);
         string write_file = OUT_DIR;
         for (int i = 0; i < int(mybuffer.size()); i++)
         {
@@ -105,6 +110,7 @@ int main(int argc, char *argv[])
         {
             if (input == '\n')                  /* Found newline */
             {
+            	mybuffer.push_back(input);	/* So that we can catch the end of a URL's Location */
                 for (int i = 0; i < int(mybuffer.size()); i++)
                 {
                     if ((mybuffer.size() - i) > 7)  /* Enough space for URL */
@@ -119,22 +125,22 @@ int main(int argc, char *argv[])
                                     /* Iterate URL's Location to find 'www.' (if exists) */
                                     for (int j = 0; j < int(url.size()); j++)
                                     {           /* Enough space for URL */
-                                        if ((url.size() - j) > 4)
+                                        if (j == 0 && url.size() > 4)
                                         {       /* Starts with www. */
-                                            if (url.at(j) == 'w' && url.at(j + 1) == 'w' && url.at(j + 2) == 'w' && url.at(j + 3) == '.')
-                                                /* Remove www. from URL's Location */
-                                                url.erase(url.begin() + j, url.begin() + j + 3);
-                                            else
-                                                loc += url.at(j);
+                                            if (url.at(0) == 'w' && url.at(1) == 'w' && url.at(2) == 'w' && url.at(3) == '.')
+                                            {   /* Ignore www. from URL's Location */
+                                                j = 3;  /* +1 when continue is called */
+                                                continue;
+                                            }
                                         }
-                                        else
-                                            loc += url.at(j);
+                                        loc += url.at(j);
                                     }
                                     auto it = locations.find(loc);  /* Check if URL's Location exists in map */
                                     if (it != locations.end())  /* Exists in map */
                                         it->second += 1;    /* Increase Counter */
                                     else        /* Doesn't exist in map */
                                         locations.insert(pair<string, int>(loc, 1));    /* Insert and set Counter to 1 */
+                                    mybuffer.clear();	/* Clear buffer */
                                     url.clear();    /* Empty the URL buffer */
                                     break;
                                 }

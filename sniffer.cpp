@@ -64,9 +64,10 @@ int main(int argc, char *argv[])
             exit(1);
         }
         path = argv[2];                         /* Update path */
-        if (path.back() != '/')                 /* '/' must be the last char */
-            path += "/";
     }
+
+    if (path.back() != '/')                     /* '/' must be the last char */
+        path += "/";
 
     if (pipe(p) == -1)                          /* Create a pipe so that Sniffer / Manager */
     {                                               /* can communicate with Listener */
