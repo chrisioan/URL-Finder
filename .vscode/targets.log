@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 10 20:19:22 2022
+# Make data base, printed on Thu May 12 02:18:38 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-152186b4-b0ef-457c-9fc2-634f19e53868.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7696d818-a2fe-4ed2-be1c-3e0822e0a9d1.sock
 # environment
 LC_NAME = el_GR.UTF-8
 # environment
@@ -41,7 +41,7 @@ QT_ACCESSIBILITY = 1
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/95/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -59,21 +59,21 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+VSCODE_CODE_CACHE_PATH = /home/chrisioan_/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.MBP0L1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.1ISYL1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.96
+GNOME_TERMINAL_SERVICE = :1.108
 # makefile
 MAKEFLAGS = pqrR
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=1f926ad9622a81bd21b0b159627a92cc
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=df4c74473e5ff13b64d95c24627c423f
 # makefile
 CURDIR := /home/chrisioan_/Desktop/Syspro/syspro_hw1
 # environment
@@ -84,6 +84,8 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+# makefile (from 'Makefile', line 5)
+DIRS = named_pipes/* out/*
 # environment
 MFLAGS = -pqrR
 # environment
@@ -107,25 +109,29 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 4260
+VSCODE_PID = 3358
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'Makefile', line 7)
+FLAGS = -g -Wall -c
 # environment
-SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1228,unix/Chris-VM:/tmp/.ICE-unix/1228
+SESSION_MANAGER = local/Chris-VM:@/tmp/.ICE-unix/1229,unix/Chris-VM:/tmp/.ICE-unix/1229
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=1f926ad9622a81bd21b0b159627a92cc
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=df4c74473e5ff13b64d95c24627c423f
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'Makefile', line 3)
+OBJS = sniffer.o workers.o
 # environment
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # makefile
@@ -134,12 +140,10 @@ SHELL = /bin/sh
 MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
-# makefile (from 'Makefile', line 2)
-objects = sniffer.o workers.o named_pipes/* out/*
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/49948476_af00_4916_a763_498ce6385c1c
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/f355a27d_6838_4fc1_8f83_d19839ad4fe3
 # environment
 MAKELEVEL := 0
 # default
@@ -161,9 +165,11 @@ SNAP_USER_COMMON = /home/chrisioan_/snap/code/common
 # environment
 LC_TIME = el_GR.UTF-8
 # environment
-SNAP = /snap/code/95
+SNAP = /snap/code/96
+# makefile (from 'Makefile', line 6)
+CPP = g++
 # environment
-SNAP_REVISION = 95
+SNAP_REVISION = 96
 # environment
 SNAP_REAL_HOME = /home/chrisioan_
 # environment
@@ -197,7 +203,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := ALL
 # environment
-SYSTEMD_EXEC_PID = 1228
+SYSTEMD_EXEC_PID = 1229
 # environment
 DISPLAY = :0
 # environment
@@ -209,7 +215,7 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/95
+SNAP_DATA = /var/snap/code/96
 # environment
 SNAP_CONTEXT = VtiFnpumEUnCHpXyaatQe-6kXHWUWPxIOS1RpjJ5iXhEcYCsCpuN
 # environment
@@ -235,13 +241,13 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-45859ba0-1.67.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-45859ba0-1.67.1-main.sock
 # environment
 TERM = xterm-256color
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/95/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/96/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # default
@@ -249,7 +255,9 @@ IM_CONFIG_PHASE = 1
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = 57fd6d01
+SNAP_VERSION = da15b6fd
+# makefile (from 'Makefile', line 4)
+OUT = sniffer workers
 # default
 SUFFIXES := 
 # environment
@@ -263,28 +271,28 @@ SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
-SNAP_USER_DATA = /home/chrisioan_/snap/code/95
+SNAP_USER_DATA = /home/chrisioan_/snap/code/96
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = ubuntu
 # environment
 LC_IDENTIFICATION = el_GR.UTF-8
+ 
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=130/1024=13%, Rehash=0, Collisions=13/160=8%
+# Load=134/1024=13%, Rehash=0, Collisions=14/164=9%
 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
- 
 
 # Directories
 
-# . (device 2051, inode 659866): 16 files, no impossibilities.
+# . (device 2051, inode 1064633): 17 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -295,7 +303,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 01:09:02.603983331
+#  Last modified 2022-05-12 02:14:44.461691231
 #  File has been updated.
 #  Successfully updated.
 
@@ -303,19 +311,38 @@ sniffer:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 7):
-	g++ -g -Wall -c sniffer.cpp
-	g++ sniffer.o -o sniffer -fsanitize=address -g3
+#  recipe to execute (from 'Makefile', line 18):
+	$(CPP) -g sniffer.o -o sniffer -fsanitize=address -g3
+
+# Not a target:
+workers.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+sniffer.o: sniffer.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 12):
+	$(CPP) $(FLAGS) sniffer.cpp
+	
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 18):
-	rm -f sniffer workers $(objects)
+#  recipe to execute (from 'Makefile', line 25):
+	rm -f $(OBJS) $(OUT) $(DIRS)
 
-ALL: clean sniffer workers
+ALL: clean sniffer.o workers.o sniffer workers
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+sniffer.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -333,20 +360,19 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-run:
+workers.o: workers.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 15):
-	./sniffer -p monitor/
+	$(CPP) $(FLAGS) workers.cpp
 
 workers:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 11):
-	g++ -g -Wall -c workers.cpp
-	g++ workers.o -o workers -fsanitize=address -g3
+#  recipe to execute (from 'Makefile', line 21):
+	$(CPP) -g workers.o -o workers -fsanitize=address -g3
 
 .PHONY: clean
 #  Implicit rule search has not been done.
@@ -354,19 +380,19 @@ workers:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=0/27=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/36=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 254 B / avg = 9 B
-# current buf: size = 8162 B / used = 254 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 302 B / avg = 10 B
+# current buf: size = 8162 B / used = 302 B / count = 29 / avg = 10 B
 
-# strcache performance: lookups = 41 / hit rate = 34%
+# strcache performance: lookups = 48 / hit rate = 39%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Tue May 10 20:19:22 2022
+# Load=29/8192=0%, Rehash=0, Collisions=0/48=0%
+# Finished Make data base on Thu May 12 02:18:38 2022
 
  

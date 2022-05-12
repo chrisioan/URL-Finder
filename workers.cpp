@@ -105,19 +105,19 @@ int main(int argc, char *argv[])
                 exit(6);
             }
         }
-        mybuffer.clear();                       /* Clear Buffer */
         while ((rsize = read(fd_read, &input, 1)) > 0)  /* rsize = 1 (byte-byte) */
         {
-            if (input == '\n')                  /* Found newline */
+            if (input == '\n' || input == '\0')                  /* Found newline */
             {
-            	mybuffer.push_back(input);	/* So that we can catch the end of a URL's Location */
+            	mybuffer.push_back(input);	/* So that we can catch the end */
                 for (int i = 0; i < int(mybuffer.size()); i++)
                 {
                     if ((mybuffer.size() - i) > 7)  /* Enough space for URL */
                     {                           /* Starts with http:// */
                         if (mybuffer.at(i) == 'h' && mybuffer.at(i + 1) == 't' && mybuffer.at(i + 2) == 't' && mybuffer.at(i + 3) == 'p' && mybuffer.at(i + 4) == ':' && mybuffer.at(i + 5) == '/' && mybuffer.at(i + 6) == '/')
                         {                       /* Iterate to extract the URL's Location */
-                            for (int w = i + 7; w < int(mybuffer.size()); w++)
+                            int w;
+                            for (w = i + 7; w < int(mybuffer.size()); w++)
                             {                   /* Found the end of URL's Location */ 
                                 if (mybuffer.at(w) == '/' || mybuffer.at(w) == '\0' || mybuffer.at(w) == '\n' || mybuffer.at(w) == ' ')
                                 {
@@ -140,22 +140,21 @@ int main(int argc, char *argv[])
                                         it->second += 1;    /* Increase Counter */
                                     else        /* Doesn't exist in map */
                                         locations.insert(pair<string, int>(loc, 1));    /* Insert and set Counter to 1 */
-                                    mybuffer.clear();	/* Clear buffer */
                                     url.clear();    /* Empty the URL buffer */
                                     break;
                                 }
                                 else            /* Didn't find end yet - insert char */
                                     url.push_back(mybuffer.at(w));
                             }
+                            i = w;
                             continue;
                         }
-                        else                    /* Doesn't start with http:// */
-                            continue;
                     }
                     else                        /* Not enough space for URL */
                         break;
                 }
-                mybuffer.clear();               /* Clear buffer */
+                mybuffer.clear();
+                url.clear();
             }
             else                                /* Still on the same line */
                 mybuffer.push_back(input);      /* Add byte/char to buffer */
@@ -165,6 +164,7 @@ int main(int argc, char *argv[])
             perror("Error in Reading");         /* read() failed */
             exit(6);
         }
+        mybuffer.clear();               /* Clear buffer */
         /* Write everything to .out file */
         for (auto curr = locations.begin(); curr != locations.end(); curr++)
         {
