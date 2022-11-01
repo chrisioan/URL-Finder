@@ -1,9 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
-rm -f sniffer.o workers.o sniffer workers named_pipes/* out/*
-g++ -g -Wall -c sniffer.cpp
-g++ -g -Wall -c workers.cpp
-g++ -g sniffer.o -o sniffer -fsanitize=address -g3
-g++ -g workers.o -o workers -fsanitize=address -g3
-make: Leaving directory '/home/chrisioan_/Desktop/Syspro/syspro_hw1'
- 
