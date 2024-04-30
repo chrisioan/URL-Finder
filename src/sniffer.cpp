@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "../../named_pipes/"             /* NamedPipes' directory */
+#include "../include/config.hpp"
 
 pid_t pid_l;                                    /* Listener's PID */
 int p[2];                                       /* Pipe */
@@ -68,6 +68,20 @@ int main(int argc, char *argv[])
 
     if (path.back() != '/')                     /* '/' must be the last char */
         path += "/";
+
+    if (mkdir(NP_DIR, S_IRWXU) < 0) {           /* Create 'named_pipes' directory */
+        if(errno != EEXIST) {                   /* Directory already exists */
+            perror("Error mkdir");              /* mkdir() failed */
+            exit(-11);
+        }
+    }
+
+    if (mkdir(OUT_DIR, S_IRWXU) < 0) {           /* Create 'out' directory */
+        if(errno != EEXIST) {                    /* Directory already exists */
+            perror("Error mkdir");               /* mkdir() failed */
+            exit(-11);
+        }
+    }
 
     if (pipe(p) == -1)                          /* Create a pipe so that Sniffer / Manager */
     {                                               /* can communicate with Listener */

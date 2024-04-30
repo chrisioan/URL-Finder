@@ -4,6 +4,7 @@
 # Except these:
 !.gitignore
 !src/
+!include/
 !named_pipes/
 !out/
 !hw1-spring-2022.pdf

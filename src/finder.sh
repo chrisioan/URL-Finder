@@ -1,7 +1,7 @@
 #!/bin/bash
 
 argc=$#                             # Store the number of arguments (TLDs) given
-files=$(ls out)                     # Store all the output files
+files=$(ls ../out)                  # Store all the output files
 
 for argc do                         # Iterate arguments (TLDs) - for every TLD do
     tld=".$argc "                   # Note the dot '.' and whitespace ' '
