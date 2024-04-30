@@ -11,7 +11,27 @@
 <br/><br/>
 
 ## About The Project
-The purpose of this project is
+The purpose of this project is to become familiar with the creation of processes using system calls like fork/exec, inter-process communication via pipes and named pipes, the use of low-level I/O, signal handling, and the creation of shell scripts.
+<br></br>
+
+For the **first part** of the project which includes **Sniffer** and **Workers**, using `inotifywait`, we will monitor file changes in a directory. The purpose is to open those files and search URLs using low-level I/O. The files are text files that can contain plain text and URLs. The search is limited to URLs using the **http** protocol, specifically in the form of `http://...`. Each URL starts with http://, and ends with a space character.
+
+For each detected URL, the location information must be extracted, excluding "www". Check the following link: https://www.techopedia.com/definition/1352/uniform-resource-locator-url
+
+For example, for the URL of the website of our department http://www.di.uoa.gr/ we have `di.uoa.gr` as the location.
+
+During file reading, the `worker` creates a new file in which it records all detected locations along with their frequency of appearance. For example, if the added file contains **3 URLs** with the location **di.uoa.gr**, the worker's output file will have a line like **di.uoa.gr 3**, and similarly, one line for each other location.
+
+If the file read by the worker is named `<filename>`, then the file it creates is named `<filename>.out`.
+<br></br>
+
+For the **second part** of the project, οur goal is to create a shell script, **finder.sh**, that will accept one or more Top Level Domains (TLDs) as arguments and search for these TLDs across all **.out** files. Specifically, the script should determine the total number of occurrences of each TLD across the set of output files we created.
+
+Our files from the previous part are in the following format:
+```
+    location     num_of_appearances
+```
+For example, if we give `com` as the argument for the TLD, the result will be the sum of `num_of_appearances` where the locations **end with** `com`.
 <br/><br/>
 
 ## Requirements
@@ -38,15 +58,14 @@ make
 ```sh
 ./sniffer [-p path]
 ```
-Where:
-<u>-p path</u>: An optional parameter, used to indicate the path of the directory we want to monitor.
+Where **-p path** is an optional parameter, used to indicate the path of the directory we want to monitor.
 
 * For **Finder**, navigate to **src** and execute:
 ```sh
 ./finder.sh <list_of_tlds>
 ```
-Where:
-<u>list_of_tlds</u>: One or more Top Level Domain (TLD) that we want to search in all .out files.
+Where **list_of_tlds** is one or more Top Level Domain (TLD) that we want to search in all .out files.
+
 ---
 * Examples:
 ```sh
@@ -66,6 +85,7 @@ Where:
 ## General Notes
 1. If the parameter [-p path] is provided, then the path must exist before the program is executed - it is not created.
 2. Each named pipe created in the "named_pipes" folder carries the name of the process that created it.
+3. All **.out** files are created inside a folder called **out** which will be located in root directory.
 <br/><br/>
 
 ## Sniffer
