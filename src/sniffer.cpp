@@ -1,4 +1,4 @@
-/* Manager/ Sniffer */
+//  Manager/Sniffer
 #include <iostream>
 #include <queue>
 
@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "named_pipes/"                   /* NamedPipes' directory */
+#define NP_DIR "../../named_pipes/"             /* NamedPipes' directory */
 
 pid_t pid_l;                                    /* Listener's PID */
 int p[2];                                       /* Pipe */

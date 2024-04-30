@@ -1,25 +1,34 @@
-# In order to execute this "Makefile" just type "make" or "make ALL"
-.PHONY: clean
-OBJS	= sniffer.o workers.o
-OUT	= sniffer workers
+# In order to execute this "Makefile" just type "make" or "make all"
+.PHONY: all clean
+
+CPP		= g++
+CFLAGS	= -g -Wall -c
+LFLAGS	= -fsanitize=address -g3
+
+SRC_DIR	= src
+BUILD_DIR = build/release
 DIRS	= named_pipes/* out/*
-CPP	= g++
-FLAGS	= -g -Wall -c
 
-ALL: clean sniffer.o workers.o sniffer workers
+OBJS	= $(BUILD_DIR)/sniffer.o $(BUILD_DIR)/workers.o
+EXECUTABLES	= $(BUILD_DIR)/sniffer $(BUILD_DIR)/workers
 
-sniffer.o: sniffer.cpp
-	$(CPP) $(FLAGS) sniffer.cpp
-	
-workers.o: workers.cpp
-	$(CPP) $(FLAGS) workers.cpp
+all: dir $(OBJS) $(EXECUTABLES)
 
-sniffer:
-	$(CPP) -g sniffer.o -o sniffer -fsanitize=address -g3
+dir:
+	mkdir -p $(BUILD_DIR)
 
-workers:
-	$(CPP) -g workers.o -o workers -fsanitize=address -g3
+$(BUILD_DIR)/sniffer.o:
+	$(CPP) $(CFLAGS) $(SRC_DIR)/sniffer.cpp -o $@
+
+$(BUILD_DIR)/workers.o:
+	$(CPP) $(CFLAGS) $(SRC_DIR)/workers.cpp -o $@
+
+$(BUILD_DIR)/sniffer:
+	$(CPP) $(LFLAGS) $(BUILD_DIR)/sniffer.o -o $@
+
+$(BUILD_DIR)/workers:
+	$(CPP) $(LFLAGS) $(BUILD_DIR)/workers.o -o $@
 
 # Clean things
 clean:
-	rm -f $(OBJS) $(OUT) $(DIRS)
+	rm -r -f $(BUILD_DIR)/* $(DIRS)

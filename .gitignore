@@ -1,6 +1,11 @@
-**/*.ini
-**/*.mp4
-**/*.tar.gz
-**/.vscode/
-**/.idea/
-**/Βοηθητικο_Υλικο/
+# Ignore everything:
+/*
+
+# Except these:
+!.gitignore
+!src/
+!named_pipes/
+!out/
+!hw1-spring-2022.pdf
+!Makefile
+!README.md

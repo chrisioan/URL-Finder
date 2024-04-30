@@ -1,4 +1,4 @@
-// Workers
+//  Workers
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -16,8 +16,8 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define NP_DIR "named_pipes/"                   /* NamedPipes' directory */
-#define OUT_DIR "out/"                          /* output files' directory */
+#define NP_DIR "../../named_pipes/"             /* NamedPipes' directory */
+#define OUT_DIR "../../out/"                    /* output files' directory */
 #define OUT_EXT ".out"                          /* output files' extension */
 
 int fd_np, fd_read, fd_write;                   /* File Descriptors */
