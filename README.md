@@ -124,7 +124,7 @@ Source code can be found here: [finder.sh](https://github.com/chrisioan/URL-Find
 
 The number of arguments is stored in a variable called 'argc,' while the names of files in the 'out/' folder are stored in 'files,' obtained by executing the 'ls out' command. Each argument/TLD is traversed individually and formatted (with a period '.' at the beginning and a space ' ' at the end). The 'count' variable is reset to zero at the start of each new TLD search.
 
-In each file (retrieved earlier with 'ls out'), the 'match' variable contains the result of the 'grep' command, with [pattern] being the content of the TLD ("$tld") and [file] being the current file to search, with the path from the current directory to it ("out/$file"). In other words, 'match' holds all the lines from the given file that contain the pattern/TLD.
+In each file (retrieved earlier with 'ls ../out'), the 'match' variable contains the result of the 'grep' command, with [pattern] being the content of the TLD ("$tld") and [file] being the current file to search, with the path from the current directory to it ("../out/$file"). In other words, 'match' holds all the lines from the given file that contain the pattern/TLD.
 
 Finally, the contents of 'match' are traversed, and if any of them is an integer, it is added to the 'count' variable. Checking whether an item is an integer is done using Regular Expression (=~). The '^' indicates the start of the string, '$' indicates the end, and '+' means there can be additional occurrences of the previous pattern. Thus, this approach checks if the string contains only digits (indicating it's an integer).
 <br/><br/>
